@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+{% load static %}
+<head>
+<title>Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- font files  -->
+<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+<!-- /font files  -->
+<!-- css files -->
+<link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' media="all" />
+<!-- /css files -->
+</head>
+<body>
+<h1>Login</h1>
+<div class="log">
+	<div class="content1">
+		<h2>Login</h2>
+		<form method="post" action="{% url 'endapp:login1' %}">
+            {% csrf_token %}
+			<input type="text" name="userid" value="USERNAME" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'USERNAME';}">
+            <input id="phone" type="text" name="use" value="phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'USERNAME';}">
+            <input type="text" name="phone" value="yan" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'USERNAME';}">
+
+            <br>
+            <input type="button" value="短信验证"  onclick="emailyan()">
+            <br>
+            <input type="password" name="password" value="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'USERNAME';}">
+
+            <div class="button-row">
+				<input type="button"  onclick="javascrtpt:window.location.href='{% url 'endapp:register' %}'" class="sign-in" value="Sign In">
+				<input type="submit" class="reset" value="Reset">
+
+                <div class="clear"></div>
+			</div>
+		</form>
+	</div>
+
+	<div class="clear"></div>
+</div>
+<div class="footer">
+	<p>Copyright &copy;  <a href="http://www.baizhiedu.com/" target="_blank" title="百知教育">百知教育</a></p>
+</div>
+<script src="{% static 'jquery.1.8.3.min.js' %}"></script>
+<script>
+    function emailyan() {
+        var txt_mobile=document.getElementById('phone').value;
+        console.log(txt_mobile);
+         $.ajax({
+            {#console.log(a)#}
+            type:'get',
+            url:"{% url 'endapp:phone' %}",
+            data:{"id":txt_mobile},
+            success:function (msg) {
+
+             }
+        })
+    }
+</script>
+</body>
+</html>
